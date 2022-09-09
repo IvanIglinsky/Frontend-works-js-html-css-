@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task  5</title>
+</head>
+<body>
+<label for="FirstNum">Перше число: </label><input type="number" id="FirstNum" style="width: 75px;">
+<label for="Action">Знак: </label><input type="text" id="Action" style="width: 75px;">
+<label for="SecondNum">Друге число: </label><input type="number" id="SecondNum" style="width: 75px;"><br><br>
+<input type="button" value="Розв'язать" id="but" onclick="Solution()" style="margin-left: 180px;"><br><br>
+<label for="Yes">Бажаєте продовжить?</label><input type="button" value="Так" id="Yes" onclick="YesNo()" style="margin-left: 50px;">
+<input type="button" value="Ні" id="No" onclick="YesNo(),No()" style="margin-left: 50px;">
+
+<h2 id="Res"></h2>
+<script>
+    function Solution()
+    {
+        let FirstNumber=parseInt(document.getElementById('FirstNum').value);
+        let Action=document.getElementById('Action').value;
+        let SecondNumber=parseInt(document.getElementById('SecondNum').value);
+        let Res=' ';
+
+            if( Action == '+' )
+                Res += FirstNumber + SecondNumber;
+            if( Action == '-' )
+                Res += FirstNumber - SecondNumber;
+            if( Action == '*' )
+                Res += FirstNumber * SecondNumber;
+            if( Action == '/' )
+                Res += FirstNumber / SecondNumber;
+            if( Action == '^' )
+                Res += FirstNumber ^ SecondNumber;
+            let ResH2 = document.getElementById ( 'Res' );
+            ResH2.innerHTML = Res;
+    }
+    function  YesNo()
+    {
+        document.getElementById('FirstNum').value="";
+        document.getElementById('SecondNum').value="";
+        document.getElementById('Action').value="";
+        let ResH2=document.getElementById('Res');
+        ResH2.innerHTML = "";
+    }
+    function No()
+    {
+        alert('Дякую за роботу!!!');
+    }
+
+</script>
+
+</body>
+</html>

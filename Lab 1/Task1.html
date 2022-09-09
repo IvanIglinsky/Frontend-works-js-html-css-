@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+    <label>Введіть суму грошей у гаманці:</label>
+    <label for="CountMoney"></label><input type="number" id="CountMoney"><br>
+    <label>Введіть ціну одного бургера:</label>
+    <label for="CostOneBurger"></label><input type="number" id="CostOneBurger"><br>
+    <label for="Result"></label><input type="button" id="Result" value="Result" style="width: 100px; background: greenyellow;" onclick="Res()">
+    <script>
+        function Res (  ) {
+            let AllMoney=document.getElementById('CountMoney').value;
+            let CostOne=document.getElementById('CostOneBurger').value;
+            let Res1=Math.floor(AllMoney/CostOne);
+            let H2 = document.getElementById('Count');
+            H2.innerHTML ='Кількість бургерів:'+ Res1.toString();
+            let lastmoney=AllMoney-CostOne*Res1;
+            let Lmoney = document.getElementById('LastMoney');
+            Lmoney.innerHTML ='Решта:'+lastmoney.toString()+' грн.';
+        }
+    </script>
+    <h3 id="Count" style="color: red;"></h3>
+    <h3 id="LastMoney" style="color: greenyellow;"></h3>
+</body>
+</html>

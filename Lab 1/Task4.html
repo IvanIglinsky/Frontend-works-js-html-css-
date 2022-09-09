@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4</title>
+</head>
+<body>
+<label for="Number">Введіть ваш вік(1-69):<input id="Number" type="number"></label><br>
+<input type="button" value="Enter" onclick="Age()">
+<script>
+  function Age()
+  {
+    let nums=document.getElementById('Number').value;
+    parseInt(nums);
+    let str='';
+    if(nums==10) str+='Десять років';
+    else if(nums==11) str+='Одинадцять років';
+    else if(nums==12) str+='Дванадцять років';
+    else if(nums==13) str+='Тринадцять років';
+    else if(nums==14) str+='Чотирнадцять років';
+    else if(nums==15) str+='П\'ятнадцять років';
+    else if(nums==16) str+='Шістнадцять років';
+    else if(nums==17) str+='Сімнадцять років';
+    else if(nums==18) str+='Вісімнадцять років';
+    else if(nums==19) str+='Дев\'ятнадцять років';
+    else {
+        let y=parseInt(nums/10);
+
+         if(y==2)str+='Двадцять';
+        else if(y==3)str+='Тридцять';
+        else if(y==4)str+='Сорок';
+        else if(y==5)str+='П\'ядесят';
+        else if(y==6)str+='Шістдесят';
+        if(!y==0)str+=' ';
+        if(nums%10==0)str+='років';
+        else if(nums%10==1)str+='один рік';
+        else if(nums%10==2)str+='два роки';
+        else if(nums%10==3)str+='три  роки';
+        else if(nums%10==4)str+='чотири роки';
+        else if(nums%10==5)str+='п\'ять років';
+        else if(nums%10==6)str+='шість років';
+        else if(nums%10==7)str+='сім років';
+        else if(nums%10==8)str+='вісім років';
+        else if(nums%10==9)str+='дев\'ять років';
+        if(y==0)str=str.charAt(0).toUpperCase()+str.slice(1);
+    }
+
+    let AgeToStr = document.getElementById('ageStr');
+    AgeToStr.innerHTML = str.toString();
+  }
+</script>
+<h2 id="ageStr"></h2>
+</body>
+</html>

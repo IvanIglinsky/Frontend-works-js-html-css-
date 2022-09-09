@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+</head>
+<body>
+<label for="Day">Введіть день:<input id="Day" type="number"></label><br><br>
+<label for="Month">Введіть місяць:<input id="Month" type="number"></label><br><br>
+<label for="Years">Введіть рік:<input id="Years" type="number"></label><br><br>
+<input type="button" value="Наступна та попередня дата" onclick="DateChange()">
+<script>function DateChange()
+{
+    let StockDay=document.getElementById('Day').value;
+    let StockMonth=document.getElementById('Month').value;
+    let StockYear=document.getElementById('Years').value;
+    let NextDate=parseInt(StockDay)+1;
+    let PreviousDate=parseInt(StockDay)-1;
+    let PreviousH2=document.getElementById('PreviousDate');
+    let NextMonth=parseInt(StockMonth);
+    let NextYear=parseInt(StockYear);
+    if(StockYear%400==0 || StockYear%4==0 &&StockYear%100!=0)
+    {
+
+        if(StockMonth==2 &&NextDate==30)
+        {
+            NextDate=1;
+            NextMonth+=1;
+        }
+    }
+    else if(StockYear%400!=0 || StockYear%4!=0 &&StockYear%100==0)
+    {
+
+        if(StockMonth==2 &&StockDay==28)
+        {
+            NextDate=1;
+            NextMonth+=1;
+        }
+    }
+
+    if(StockMonth%2!=0)
+    {
+        if( NextDate>31)
+        {
+            NextDate=1;
+            NextMonth+=1;
+            if(NextMonth>12)
+            {
+                NextMonth=1;
+                NextYear+=1;
+            }
+        }
+    }
+   else if(StockMonth%2==0)
+    {
+        if( NextDate>30)
+        {
+            NextDate=1;
+            NextMonth+=1;
+            if(NextMonth>12)
+            {
+                NextMonth=1;
+                NextYear+=1;
+            }
+        }
+    }
+
+    let PreviousMonth=parseInt(StockMonth);
+    let PreviousYear=parseInt(StockYear);
+    if( PreviousDate<1)
+    {
+        PreviousDate=31;
+        PreviousMonth-=1;
+        if(PreviousMonth<1)
+        {
+            PreviousMonth=12;
+            PreviousYear-=1;
+        }
+    }
+    PreviousH2.innerHTML='Попередння дата- '+PreviousDate+'.'+PreviousMonth+'.'+PreviousYear;
+    let NextH2=document.getElementById('NextDate');
+    NextH2.innerHTML='Наступна дата- '+NextDate+'.'+NextMonth +'.'+NextYear;
+}
+
+</script>
+<h2 id="PreviousDate"></h2>
+<h2 id="NextDate"></h2>
+</body>
+</html>

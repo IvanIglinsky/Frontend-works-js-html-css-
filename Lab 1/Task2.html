@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+</head>
+<body>
+<label for="Number">Введіть п'ятизначне число:<input id="Number" type="number"></label><br>
+<input type="button" value="Перенести" onclick="Refract()">
+<script>
+    function Refract()
+    {
+        let StartNum=document.getElementById('Number').value;
+        let res=StartNum[StartNum.length-1];
+        let LastNums=(res + StartNum.substring(0,StartNum.length-1));
+        let RefractNums = document.getElementById('nums');
+        RefractNums.innerHTML = LastNums.toString();
+    }
+</script>
+<h3 id="nums" style="color:red;"></h3>
+</body>
+</html>

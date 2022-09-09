@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 7</title>
+</head>
+<body>
+<label for="S">Введіть S:<input id="S" type="number"></label><br><br>
+<label for="K">Введіть K:<input id="K" type="number"></label><br>
+<button type="button" onclick="Buttons()" >Розрахунок</button>
+<script>
+  function Buttons()
+  {
+    let S=document.getElementById('S').value;
+    let K=document.getElementById('K').value;
+    S=parseInt(S[1]);
+    document.getElementById('res').innerText='Результат: '+(S**K).toString();
+  }
+</script>
+<h3 id="res"></h3>
+</body>
+</html>
