@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <style>
+        input{
+            background: black;
+            color: red;
+            font-weight: bold;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="Показать покупки" onclick="ShowBuysButton();">
+<input type="button" value="Додати покупку до списку" onclick="MakeBuysButton();">
+<input type="button" value="Купити продукт" onclick="BuyTovarButton();">
+<h2 id="Res"></h2>
+<script>
+    let buys=[];
+  function MakeBuys(buys,buys_names)
+  {
+      let flag=false;
+      for(let i=0;i<buys.length;i++)
+          if(buys_names==buys[i].name)
+          {
+              buys[i].count++;
+              flag=true;
+              break;
+          }
+      if(!flag)
+          buys.push({
+              name:buys_names,
+              count:1,
+              status:false
+          })
+  }
+  function ShowBuys(buys) {
+    str="";
+    for ( let i=0;i<buys.length;i++)
+        if(!buys[i].buy)
+            str+=`${buys[i].name} x${buys[i].count}- не куплено<br>`;
+    for ( let i=0;i<buys.length;i++)
+        if(buys[i].buy)
+            str+=`${buys[i].name} x${buys[i].count}- куплено<br>`;
+    return str;
+  }
+  function BuyTovar(buys,buys_name)
+  {
+    for(let i=0;i<buys.length;i++)
+        if(buys[i].name==buys_name)
+        {
+            buys[i].buy=true;
+            return;
+        }
+  }
+function  ShowBuysButton()
+{
+    document.getElementById("Res").innerHTML=ShowBuys(buys);
+}
+  function  MakeBuysButton()
+  {
+      let name =prompt("Назва продукту: ");
+      MakeBuys(buys,name);
+  }
+  function BuyTovarButton()
+  {
+      let name =prompt("Назва товару для покупки:");
+      BuyTovar(buys,name);
+  }
+
+</script>
+</body>
+</html>

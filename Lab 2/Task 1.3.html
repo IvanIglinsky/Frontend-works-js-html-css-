@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <style>
+        .but{
+            background: black;
+            color: red;
+            font-weight: bold;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<label for="Str">Введіть  рядок<input id="Str" type="text"></label><br>
+<input type="button" class="but" onclick="Count();" value="ToUp">
+<script>
+  function Count() {
+    let Str = document.getElementById ( 'Str' ).value.toLowerCase();
+    let count=0;
+     for(let i=0;i<Str.length;i++)
+     {
+       if(Str[i]=='а'||Str[i]=='о'||Str[i]=='у'||Str[i]=='и'||Str[i]=='і'||Str[i]=='е')
+         count++;
+     }
+
+    let H2Res = document.getElementById ( 'Res' );
+    H2Res.innerHTML = count.toString ()+' Голосних';
+  }
+</script>
+<h2 id="Res"></h2>
+</body>
+</html>

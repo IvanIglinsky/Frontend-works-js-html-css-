@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 6</title>
+    <style>
+        .but{
+            background: black;
+            color: red;
+            font-weight: bold;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<label for="Str">Введіть  рядок: <input id="Str" type="text"></label><br>
+<label for="Letter">Введіть  символ: <input id="Letter" type="text"></label><br>
+<input type="button" class="but" onclick="Index();" value="Порахувати">
+<script>
+  function Index() {
+    let Str = document.getElementById ( 'Str' ).value;
+    let letter=document.getElementById('Letter').value;
+    let index=' ';
+    let count=0;
+    for(let i=0;i<Str.length;i++)
+    {
+      if(Str[i]==letter)
+      {
+        index+=(i+1).toString()+',';
+        count++;
+      }
+    }
+    let H2Res = document.getElementById ( 'Res' );
+    H2Res.innerHTML ='Індеки: '+ index.toString ()+'Кількість: '+count.toString() ;
+  }
+</script>
+<h2 id="Res"></h2>
+
+</body>
+</html>

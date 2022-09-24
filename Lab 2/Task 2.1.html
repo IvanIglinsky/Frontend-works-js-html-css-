@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2.1</title>
+    <style>
+        input{
+            padding: 10px;
+            margin: 10px;
+            background: red;
+            color: black;
+            font-weight: bold;
+            border-radius: 40%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="ShowTime" value="Показати час" onclick="ShowTime();">
+<input type="button" id="SetTime" value="Встановити час" onclick="SetTime();">
+<input type="button" id="SetSec" value="Змінити секунди" onclick="SetSec();">
+<input type="button" id="SetMin" value="Змінити хвилини" onclick="SetMin();">
+<input type="button" id="SetHour" value="Змінити години" onclick="SetHour();">
+<h2 id="Res"></h2>
+<script>
+    let Sec=0;
+    let Min=0;
+    let Hour=0;
+    let Day=0;
+    function ShowTime()
+    {
+        let H2Res = document.getElementById ( 'Res' );
+        H2Res.innerHTML =Day+' days '+Hour+":"+Min+':'+Sec.toString();
+    }
+    function SetTime()
+    {
+       Sec=prompt('Введіть секунди');
+       Min=prompt('Введіть хвилини');
+       Hour=prompt('Введіть години');
+        let H2Res = document.getElementById ( 'Res' );
+        H2Res.innerHTML =Day+' days '+Hour+":"+Min+':'+Sec.toString();
+    }
+    function SetSec()
+    {
+        let NewSec=prompt('Введіть секунди');
+        let tmp=NewSec/60;
+            Sec=parseInt(Sec)+(NewSec%60);
+            Min=parseInt(Min)+parseInt(tmp);
+        if(parseInt(Sec)>=60) {
+            Min++;
+            Sec=parseInt ( Sec )-60;
+        }
+
+    }
+    function SetMin()
+    {
+        let NewMin=prompt('Введіть хвилини');
+        let TMP=NewMin/60;
+        Min=parseInt(Min)+(NewMin%60);
+        Hour=parseInt(Hour)+parseInt(TMP);
+        if(parseInt(Min)>=60) {
+            Hour++;
+            Min= parseInt ( Min ) - 60;
+        }
+    }
+    function SetHour()
+    {
+        let NewHour=prompt('Введіть години');
+        Hour=parseInt(Hour)+parseInt(NewHour);
+        if(parseInt(Hour)>=24)
+        {
+            Day++;
+            Hour=parseInt(Hour)-24;
+        }
+    }
+</script>
+</body>
+</html>

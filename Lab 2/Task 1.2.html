@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+    <style>
+        .but{
+            background: black;
+            color: red;
+            font-weight: bold;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<label for="Str">Введіть  рядок<input id="Str" type="text"></label><br>
+<input type="button" class="but" onclick="ToUp();" value="ToUp">
+<script>
+    function ToUp() {
+        let Str = document.getElementById ( 'Str' ).value;
+        let NewStr = Str[0].toUpperCase () + Str.slice ( 1 );
+        let H2Res = document.getElementById ( 'Res' );
+        H2Res.innerHTML = NewStr.toString ();
+    }
+</script>
+<h2 id="Res"></h2>
+</body>
+</html>
