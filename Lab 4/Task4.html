@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" data-length="6"><br><br>
+<input type="text" data-length="7"><br><br>
+<input type="text" data-length="8"><br>
+<script>
+  let inputs=document.querySelectorAll('input');
+  for(let input of inputs)
+  {
+    input.addEventListener('blur',check);
+  }
+  function check()
+  {
+    if(this.value.length==this.getAttribute('data-length'))
+    {
+      this.style.border="2px solid yellowgreen";
+    }
+    else
+    {
+      this.style.border="2px solid red";
+    }
+  }
+</script>
+</body>
+</html>

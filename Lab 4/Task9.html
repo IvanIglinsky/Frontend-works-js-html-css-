@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .bold{
+      font-weight: bold;
+    }
+    .italic{
+      font-style: italic;
+    }
+    .underline{
+      text-decoration-line:underline;
+    }
+    p{
+      padding: 10px;
+    }
+    input{
+      margin-left: 50px;
+      width: 50px;
+    }
+    .separator
+    {
+     width:  50px;
+    }
+    select
+    {
+      margin-left: 50px;
+    }
+  </style>
+</head>
+<body>
+<div id="BackStyle">
+  <table>
+    <tr>
+      <td class="tdcolor"></td>
+      <td class="tdcolor"></td>
+      <td class="tdcolor"></td>
+      <td class="tdcolor"></td>
+      <td class="tdcolor"></td>
+      <td class="tdcolor"></td>
+      <td class="separator"></td>
+      <td class="tdText">B</td>
+      <td class="tdText">I</td>
+      <td class="tdText">U</td>
+      <td>
+        <input type="number" id="SizeOfText" onchange="ChangeSize();">
+      </td>
+      <td>
+        <div class="">
+          <label for="fontFamilySelect" class="form-label"></label>
+          <select class="form-select" id="fontFamilySelect" onchange="updateFontFamily()">
+            <option value="">Select</option>
+            <option disabled style="font-weight: bold; background-color: #EEEEEE">Serif Fonts</option>
+            <option value="Georgia,serif" style="font-family: Georgia,serif">Georgia</option>
+            <option value="Palatino Linotype,Book Antiqua,Palatino,serif" style="font-family: Palatino Linotype,Book Antiqua,Palatino,serif">Palatino Linotype</option>
+            <option value="Times New Roman,Times,serif" style="font-family: Times New Roman,Times,serif">Times New Roman</option>
+            <option disabled style="font-weight: bold; background-color: #EEEEEE">Sans-Serif Fonts</option>
+            <option value="Arial,Helvetica,sans-serif" style="font-family: Arial,Helvetica,sans-serif">Arial</option>
+            <option value="Arial Black,Gadget,sans-serif" style="font-family: Arial Black,Gadget,sans-serif">Arial Black</option>
+            <option value="Comic Sans MS,cursive,sans-serif" style="font-family: Comic Sans MS,cursive,sans-serif">Comic Sans MS</option>
+            <option value="Impact,Charcoal,sans-serif" style="font-family: Impact,Charcoal,sans-serif">Impact</option>
+            <option value="Lucida Sans Unicode,Lucida Grande,sans-serif" style="font-family: Lucida Sans Unicode,Lucida Grande,sans-serif">Lucida Sans Unicode</option>
+            <option selected="selected" value="Tahoma,Geneva,sans-serif" style="font-family: Tahoma,Geneva,sans-serif">Tahoma</option>
+            <option value="Trebuchet MS,Helvetica,sans-serif" style="font-family: Trebuchet MS,Helvetica,sans-serif">Trebuchet MS</option>
+            <option value="Verdana,Geneva,sans-serif" style="font-family: Verdana,Geneva,sans-serif">Verdana</option>
+            <option disabled style="font-weight: bold; background-color: #EEEEEE">Monospace Fonts</option>
+            <option value="Courier New,Courier,monospace" style="font-family: Courier New,Courier,monospace">Courier New</option>
+            <option value="Lucida Console,Monaco,monospace" style="font-family: Lucida Console,Monaco,monospace">Lucida Console</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores aut consequuntur eos illo inventore, ipsa ipsam iusto nostrum quisquam rem repellat repellendus sapiente, sequi suscipit vero voluptatem? Accusamus accusantium amet animi, aperiam architecto aspernatur atque consectetur cumque debitis deleniti dicta distinctio ea, earum enim, error facilis fuga illum inventore iure labore laboriosam laborum magni maiores minima molestiae natus nemo odit officiis perferendis perspiciatis placeat porro quidem quisquam repellendus soluta vero voluptate? Amet animi, commodi culpa eius illo iste libero repudiandae unde? Alias eos molestias qui recusandae sunt! Beatae inventore obcaecati ratione velit! Cupiditate doloremque, explicabo fuga magni soluta totam.</p>
+</div>
+<script>
+  let tds=document.getElementsByClassName("tdcolor");
+  let tdText=document.getElementsByClassName('tdText');
+  let tdSizeText=document.getElementById('SizeOfText');
+  let text=document.querySelector("p");
+  for(let td of tdText)
+  {
+    td.style.width='35px';
+    td.style.height='35px';
+    td.style.textAlign='center';
+    td.style.border='1px solid white';
+  }
+  tdText.item(0).onclick=ChangeTypeOfTextToBold;
+  tdText.item(1).onclick=ChangeTypeOfTextToItalic;
+  tdText.item(2).onclick=ChangeTypeOfUnderLine;
+  let backst=document.getElementById('BackStyle');
+  backst.style.background='purple';
+  for(let td of tds)
+  {
+    td.style.width='35px';
+    td.style.height='35px';
+    td.style.border='1px solid black';
+    td.onclick=ChangeColor;
+  }
+  tds.item(0).style.background='green';
+  tds.item(1).style.background='red';
+  tds.item(2).style.background='blue';
+  tds.item(3).style.background='purple';
+  tds.item(4).style.background='yellow';
+  tds.item(5).style.background='orange';
+
+  let select=document.querySelectorAll("select");
+  for(let op of select)
+  {
+    op.onchange=ChangeStyleText;
+  }
+
+function ChangeColor()
+{
+  backst.style.background=this.style.background;
+}
+
+function ChangeSize()
+{
+    text.style.fontSize=tdSizeText.value+'px';
+}
+function ChangeTypeOfTextToItalic()
+{
+  text.classList.toggle('italic');
+}
+function ChangeTypeOfTextToBold()
+{
+  text.classList.toggle('bold');
+}
+function ChangeTypeOfUnderLine()
+{
+  text.classList.toggle('underline');
+}
+  function ChangeStyleText()
+  {
+    text.style.fontFamily=this.value;
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width: 300px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+<img src="img/1618376094_18-funart_pro-p-mashina-cherno-belaya-mashini-krasivo-foto-19.jpg" alt="">
+<img src="img/1636809210_15-hdpic-club-p-cherno-beloe-avto-16.jpg" alt="">
+<img src="img/1636809250_26-hdpic-club-p-cherno-beloe-avto-28.jpg" alt="">
+<img src="img/1636809299_44-hdpic-club-p-cherno-beloe-avto-46.jpg" alt="">
+<img src="img/1636809324_52-hdpic-club-p-cherno-beloe-avto-58.jpg" alt="">
+<script>
+    let img=document.querySelectorAll('img');
+    for (let im of img)
+    {
+        im.onclick=ShowSrc;
+    }
+    function ShowSrc()
+    {
+        alert(this.src);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    input{
+      color: red;
+      background: black;
+      font-weight: bold;
+      border: 1px solid white;
+      margin-bottom:10px ;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+<ol>
+  <li>Lorem ipsum dolor sit.</li>
+  <li>Accusamus adipisci maxime suscipit!</li>
+  <li>Commodi dicta dolore labore.</li>
+  <li>Cupiditate eum velit voluptas?</li>
+  <li>Libero nam nulla reiciendis.</li>
+</ol>
+<input type="button" value="Add" onclick="addL();">
+<input type="button" value="Del" onclick="Del();">
+<script>
+  let list=document.querySelector('ol');
+  for(let li of list.children)
+  {
+    li.onclick=DelAny;
+  }
+
+  function addL()
+  {
+    let li= document.createElement('li');
+    li.innerHTML='Hi!I am new li tag :)';
+    list.appendChild(li);
+  }
+  function  Del()
+  {
+    list.removeChild(list.lastElementChild);
+  }
+  function DelAny()
+  {
+    this.parentElement.removeChild(this);
+  }
+</script>
+</body>
+</html>

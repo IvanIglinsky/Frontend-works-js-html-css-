@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+      .line{
+          margin: 3px;
+         height: 3px;
+      }
+      body {
+      background: bisque;
+      }
+    </style>
+</head>
+<body>
+<div id="elem">
+  <p class="ps-3 pt-3 h3" >Lorem ipsum dolor sit?</p>
+  <p class="ps-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur delectus ea magnam magni. Accusamus aliquam commodi, cum cumque dolorum ea harum illum incidunt, iste laudantium nihil placeat quaerat qui quos recusandae repellendus sint sit voluptatem. Aliquam consectetur cupiditate, distinctio doloribus dolorum ea ipsa iusto labore modi quas, quidem repudiandae rerum velit voluptas voluptatem. Ad adipisci, atque aut autem blanditiis cupiditate deleniti deserunt dignissimos dolor dolorem doloremque doloribus ducimus eos est ex illo itaque iure labore laborum libero natus nesciunt officiis, pariatur placeat provident quam quia quibusdam quis rem sapiente sed sunt tempore vero! Accusantium ipsa itaque odit quae saepe vel.</p>
+  <hr class="ms-3 line" id="separator" >
+  <div>
+    <p class="ps-3 pt-3 h5" id="qua">Leave your comment</p>
+    <label for="NameCom" class="ms-3">Name: </label><input type="text" id="NameCom" class="ms-3"><br><br>
+    <label for="YourCom" class="ms-3">Comment</label><br><textarea name="Comment" id="YourCom" cols="200" rows="5" class="ms-3"></textarea>
+    <input type="button" class="ms-3" value="Add comment" id="comment" style="width:calc(100% - 43px);" onclick="AddComment();">
+  </div>
+</div>
+<script>
+  function AddComment()
+  {
+    let Name=document.getElementById('NameCom');
+    let Comment=document.getElementById('YourCom');
+    let Separator=document.getElementById('qua');
+    let NameNew=document.createElement('h5');
+    let Data = new Date();
+    let  Year = Data.getFullYear();
+    let  Month = Data.getMonth();
+    let  Day = Data.getDate();
+    let Hour=Data.getHours();
+    let Min=Data.getMinutes();
+    let DAte=(Year+'.'+(Month+1)+'.'+Day+' '+Hour+':'+Min);
+    let DateN=document.createElement('p');
+    DateN.innerHTML=DAte;
+    DateN.style.fontSize='12px';
+    let CommentNew=document.createElement('div');
+    CommentNew.style.fontWeight='normal';
+    CommentNew.style.fontSize='16px';
+      let hr=document.createElement('hr');
+      hr.classList.add('line');
+    NameNew.innerHTML=Name.value;
+    CommentNew.innerHTML=Comment.value;
+      Separator.prepend(hr);
+      Separator.prepend(CommentNew);
+      Separator.prepend(DateN);
+    Separator.prepend(NameNew);
+
+
+
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    li{
+      list-style-type: none;
+        background: aqua;
+        border: 1px solid black;
+        height: 30px;
+        padding-top: 5px;
+    }
+    ul{
+       padding: 0;
+    }
+    .elem
+    {
+
+    }
+  </style>
+</head>
+<body>
+<ul class="elem">
+  <li >Lorem ipsum dolor sit amet.</li>
+  <li >Autem excepturi perspiciatis quaerat reprehenderit.</li>
+  <li >Animi error quas repudiandae voluptates.</li>
+  <li >Accusamus commodi deserunt eveniet sed?</li>
+  <li >Debitis maiores molestias quam veniam.</li>
+</ul>
+<script>
+  let list=document.querySelector('ul');
+  let li=document.createElement('li');
+  li.innerHTML="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum et quod rem sequi unde. Ad alias at commodi consequatur cumque cupiditate distinctio eos ex facilis laudantium magni natus nesciunt nihil nisi nostrum numquam officia placeat quasi quia quis repellat repellendus repudiandae tempora ut, voluptatibus. Accusantium cumque deserunt dolores facilis illo ipsum mollitia natus nesciunt odit officia optio qui, quidem quod saepe sint, voluptatem voluptatum. Ab aut cupiditate eum excepturi hic id natus porro possimus quibusdam, quidem quis sapiente tenetur voluptas. A aliquam blanditiis consequatur dignissimos distinctio dolorem et ex excepturi incidunt ipsa neque odio placeat reprehenderit, rerum, voluptate voluptatem voluptatum!";
+  li.style.height='90px';
+  li.style.background='blue';
+  li.style.color='white';
+  li.style.padding='1px 10px';
+  for(let li of list.children)
+  {
+    li.onclick=OpenState;
+  }
+  function OpenState()
+  {
+    this.after(li);
+  }
+</script>
+</body>
+</html>

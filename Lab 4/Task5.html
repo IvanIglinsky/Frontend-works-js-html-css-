@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            color: red;
+            background: black;
+            font-weight: bold;
+            border: 1px solid white;
+            margin-bottom:10px ;
+            height: 40px;
+        }
+        .Iglinskyi
+        {
+            border: 10px solid yellowgreen;
+        }
+        .Ivan
+        {
+            background:yellow ;
+        }
+        .Yuriyovych
+        {
+            color: blue;
+            font-size: 32px;
+        }
+        #elem
+        {
+        }
+    </style>
+</head>
+<body>
+<div id="elem" class="Iglinskyi Ivan Yuriyovych">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
+</div>
+<input type="button" onclick="del();" value="1) Видалити"><br>
+<input type="button" onclick="isThis();" value="2) Перевірка"><br>
+<input type="button" onclick="addOrDel();" value="3) Додає/Видаляє"><br>
+<input type="button" onclick="connectedClass();" value="4) Підключені класи"><br>
+
+<script>
+    let elem = document.querySelector ( '#elem' );
+    function del() {
+
+        elem.classList.remove ( 'Ivan' )
+    }
+    function isThis()
+    {
+        if(elem.classList.contains('Ivan'))
+        {
+            alert('Клас є')
+        }
+        else
+        {
+            alert('Класу нема')
+        }
+    }
+    function addOrDel()
+    {
+        elem.classList.toggle('Ivan');
+    }
+    function connectedClass()
+    {
+        alert('Кількість підключених класів: ' +elem.classList.length+ ' їхні назви: '+elem.classList.value)
+    }
+
+</script>
+</body>
+</html>

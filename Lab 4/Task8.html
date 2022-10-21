@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #elems
+    {
+      border: 2px solid red;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="elems">
+</div>
+<input type="button" onclick="NewElem();" value="New element">
+<script>
+
+  let elem=document.getElementById('elems');
+  let countOfClick=0;
+function NewElem()
+{
+    let myDiv=document.createElement('div');
+     let color=Math.round((Math.random()*1000000),0);
+    myDiv.onclick=Remove;
+    myDiv.style.width='50px';
+    myDiv.style.height='50px';
+    myDiv.style.margin='10px';
+    myDiv.style.border='2px solid black';
+    myDiv.style.display='inline-block';
+    if( countOfClick>=16)
+        stop();
+    else {
+        myDiv.style.background='#'+color;
+        elem.appendChild ( myDiv );
+        countOfClick++;
+    }
+}
+function Remove()
+{
+    countOfClick--;
+    this.parentElement.removeChild(this);
+}
+</script>
+</body>
+</html>

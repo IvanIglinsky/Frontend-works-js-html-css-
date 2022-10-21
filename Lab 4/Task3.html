@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://google.com">silka 1</a><br>
+<a href="https://web.telegram.org/k/">silka 2</a><br>
+<a href="https://www.dota2.com/home">silka 3</a><br>
+<script>
+let silki=document.querySelectorAll('a');
+for(let silka of silki)
+{
+  silka.addEventListener('mousemove',adds);
+
+}
+function adds()
+{
+  this.innerHTML=this.innerHTML+"  "+this.href;
+  this.removeEventListener('mousemove',adds);
+}
+</script>
+</body>
+</html>

@@ -58,16 +58,23 @@ function ChangeIMG()
 //task7
 function Build()
 {
-    let Check=document.querySelector("input[name='Build']:checked").value;
-    let floor=document.getElementById('Floor').value;
-    let price=document.getElementById('Price').value;
-    if ( price<600000 && (Check ==3  || (Check==1 && floor>=2 && floor<=6)) )
+    let floor=parseInt(document.getElementById('Floor').value);
+    let price=parseInt(document.getElementById('Price').value);
+    if ( price<600000 && (document.getElementById('r3').checked  || (document.getElementById('r1').checked && floor>=2 && floor<=6)) )
     {
         document.getElementById('Res_7').innerHTML='Житло підходить';
     }
     else
         document.getElementById('Res_7').innerHTML = 'Житло не підходить';
+
 }
+function HiddeFunc()
+{
+    document.getElementById('Floor').style.visibility="hidden";
+}
+ function ShowFunc(){
+     document.getElementById('Floor').style.visibility="visible";
+ }
 //task8
 function  GenRandNum()
 {
@@ -106,6 +113,20 @@ function  OpenJs()
 //task11
 function AddPro()
 {
+    if(document.getElementById('ProGresBar').value==100)
+    {
+        document.getElementById('ProGresBar').value=0;
+    }
+    document.getElementById('ProGresBar').style.backgroundColor="white";
+
+    if(0<=document.getElementById('ProGresBar').value<30)
+    {
+        document.getElementById('ProGresBar').style.backgroundColor="red";
+
+    }
+    else if(30<=document.getElementById('ProGresBar').value<70) {
+        document.getElementById ( 'ProGresBar' ).style.backgroundColor = "yellow";
+    }
     document.getElementById('ProGresBar').value+=5;
 }
 //task12
