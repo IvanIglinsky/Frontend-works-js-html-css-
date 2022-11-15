@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      border:2px solid black;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+<div>
+</div>
+<script>
+  let block=document.querySelector('div');
+  block.onclick=changeColor;
+  function changeColor(event){
+    block.style.background='white';
+    if(event.ctrlKey)
+    {
+      block.style.background='red';
+    }
+   if(event.altKey )
+    {
+      block.style.background='green';
+    }
+    if(event.shiftKey)
+    {
+      block.style.background='blue';
+    }
+  }
+</script>
+</body>
+</html>

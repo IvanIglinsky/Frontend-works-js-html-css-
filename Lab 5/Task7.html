@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: yellow;
+            color: blue;
+            font-weight: bold;
+            font-size: 25px;
+        }
+        input{
+            border-radius: 30%;
+            padding-left: 50px;
+            height: 25px;
+        }
+
+    </style>
+</head>
+<body>
+Введіть ім'я:<br><input id="text" type="text">
+<script>
+  let name=document.getElementById('text');
+  name.onkeypress=DelNum;
+  function DelNum(event) {
+      this.value=this.value.replace(/[1234567890]/,'');
+  }
+</script>
+</body>
+</html>

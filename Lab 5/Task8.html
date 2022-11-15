@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: green;
+        }
+        #pole{
+            background-repeat: no-repeat;
+            width: 770px;
+            height: 567px;
+            background-image: url("img/football-pole.jpg");
+            position: relative;
+        }
+        #ball{
+            background-image: url("img/ball123.png");
+            width: 64px;
+            height: 64px;
+            position: absolute;
+            transition: all 3s;
+            display: flex;
+            top:calc( 50% - 5%);
+            left:calc( 50% - 3.5%);
+        }
+    </style>
+</head>
+<body>
+<div id="pole">
+  <div id="ball">
+
+  </div>
+</div>
+<script>
+    let ball=document.getElementById('ball');
+    let pole=document.getElementById('pole');
+    pole.onclick=moveBall;
+    function moveBall(event)
+    {
+        ball.style.transition='all 3s';
+        ball.style.left=event.clientX-32+'px';
+        ball.style.top=event.clientY-32+'px';
+        if(event.clientX-32>735||event.clientY-32>525)
+        {
+            alert('Мяч вийшов з поля');
+            ball.style.left='45%';
+            ball.style.top='45%';
+        }
+    }
+
+</script>
+</body>
+</html>

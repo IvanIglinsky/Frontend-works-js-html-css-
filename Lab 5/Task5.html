@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+  <li>Lorem.</li>
+  <li>At?</li>
+  <li>Odio.</li>
+  <li>Saepe?</li>
+  <li>Quidem.</li>
+</ul>
+<button>Add</button>
+<script>
+let menu=document.querySelector('ul');
+let button=document.querySelector('button');
+button.onclick=addLi;
+function addLi(){
+  let li=document.createElement('li');
+  li.innerHTML='new li';
+  menu.appendChild(li);
+  li.onclick=changeCss;
+}
+
+for(let li of menu.children){
+  li.onclick=changeCss;
+}
+function changeCss(){
+  this.style.backgroundColor='blue';
+}
+</script>
+</body>
+</html>

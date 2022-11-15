@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    td{
+      border: 1px solid black;
+    }
+    body{
+      background: bisque;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <td>Name1</td>
+    <td>Surname1</td>
+  </tr>
+  <tr>
+    <td>Name2</td>
+    <td>Surname2</td>
+  </tr>
+  <tr>
+    <td>Name3</td>
+    <td>Surname3</td>
+  </tr>
+</table>
+<input id="name" type="text">
+<input id="surname" type="text">
+<button>Add</button>
+<script>
+  let name=document.getElementById('name');
+  let surname=document.getElementById('surname');
+  let table=document.querySelector('table');
+  let button=document.querySelector('button');
+  button.onclick=add;
+  let tdshki=document.querySelectorAll('td');
+  for(let td of tdshki)
+  {
+    td.onclick=newinfo;
+  }
+  function add(){
+    let tr=document.createElement('tr');
+    let tdName=document.createElement('td');
+    let tdSurname=document.createElement('td');
+    tdName.onclick=newinfo;
+    tdSurname.onclick=newinfo;
+    tr.appendChild(tdName);
+    tr.appendChild(tdSurname);
+    tdName.innerHTML=name.value;
+    tdSurname.innerHTML=surname.value;
+    table.appendChild(tr);
+  }
+  function newinfo()
+  {
+    this.innerHTML=prompt();
+  }
+
+
+</script>
+</body>
+</html>

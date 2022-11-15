@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 100%;
+            height: 100vh;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    </div>
+    <script>
+        let main=document.querySelector('.main');
+        main.onmousemove=ShowXY;
+        function ShowXY()
+        {
+            main.innerHTML="X="+ event.clientX+", Y="+event.clientY;
+        }
+    </script>
+</body>
+</html>

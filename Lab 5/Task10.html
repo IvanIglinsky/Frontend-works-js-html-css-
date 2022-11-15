@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    *{
+      background: bisque;
+    }
+    ul{
+      list-style-type: decimal;
+    }
+    .colorSwitch{
+      background:orange;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+<ul >
+  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, nostrum!</li>
+  <li>Iusto, laudantium, sint? Amet illum iste laborum modi officia possimus!</li>
+  <li>A aliquam autem consequatur delectus, expedita itaque laborum modi velit.</li>
+  <li>Doloremque incidunt soluta ut. Blanditiis dicta explicabo inventore odio possimus?</li>
+  <li>Asperiores autem culpa facilis harum labore qui temporibus velit voluptas?</li>
+  <li>Amet beatae dolorum eligendi in maxime officia officiis porro sit!</li>
+  <li>Asperiores dignissimos enim expedita magni neque ullam vel veritatis! Sunt.</li>
+</ul>
+<script>
+  let ul=document.querySelector('ul');
+  for(let li of ul.children)
+  {
+    li.onclick=changeBgColor;
+  }
+  let lastRow;
+  function changeBgColor(event) {
+    if( event.shiftKey ) {
+      if(lastRow.rowIndex<this.rowIndex) {
+        for(let i=lastRow.rowIndex;i<=this.rowIndex;i++) {
+          ul[i].classList.add ( 'colorSwitch' );
+        }
+      } else{
+        for(let i=lastRow.rowIndex;i>=this.rowIndex;i--) {
+          ul[i].classList.add('colorSwitch');
+        }
+      }
+      return;
+    }
+    if (event.ctrlKey) {
+      if (this.classList.contains('colorSwitch')) {
+        this.classList.remove('colorSwitch');
+        return;
+      } else {
+        this.classList.toggle('colorSwitch');
+        return;
+      }
+    }
+      document.querySelectorAll('.colorSwitch').forEach((elem) => {
+        elem.classList.remove('colorSwitch');
+      });
+      if (!this.classList.contains('colorSwitch')) {
+        this.classList.toggle('colorSwitch');
+      }
+      if (this.classList.contains('colorSwitch')) {
+        lastRow = this;
+        return;
+      }
+  }
+</script>
+</body>
+</html>

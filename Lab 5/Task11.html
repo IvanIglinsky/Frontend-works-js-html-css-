@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task11</title>
+  <style>
+    body{
+      background: tomato;
+    }
+    #text{
+      width: 250px;
+    }
+    p:first-child
+    {
+      color: blue;
+      font-weight: bold;
+    }
+    p:nth-child(2)
+    {
+      color: yellow;
+      font-weight: bold;
+    }
+    hr{
+      background-color: greenyellow;
+      height: 2px;
+    }
+  </style>
+</head>
+<body>
+  <p>Press Shift+E for edit text.</p>
+  <p>Press Shift+S for save text.</p>
+  <hr>
+<p id="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque blanditiis deleniti distinctio dolore fugit laboriosam molestiae mollitia nemo officia perferendis, quas quasi quidem sed sequi tempore? Ab atque corporis sequi?</p>
+  <script>
+    document.onkeypress=Text;
+    function  Text(event) {
+        let text = document.getElementById ( 'text' );
+        let textarea = document.createElement ( 'textarea' );
+      if( event.shiftKey && event.key=='E') {
+          textarea.innerHTML = text.innerHTML;
+          textarea.style.width='300px';
+          textarea.style.height='200px';
+          document.querySelector('hr').after(textarea);
+          text.innerHTML = '';
+          textarea.style.visibility='show';
+          document.onkeypress=function ( event ) {
+              if( event.shiftKey && event.key == 'S' ) {
+                  let p = document.getElementById ( 'text' );
+                  p.innerHTML = textarea.value;
+                  console.log ( p );
+                  textarea.style.visibility='hidden';
+                  document.querySelector ( 'hr' ).after ( p );
+
+              }
+          }
+      }
+
+    }
+  </script>
+</body>
+</html>

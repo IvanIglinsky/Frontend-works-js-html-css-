@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lab 5</title>
+  <style>
+    html{
+      background: darkgreen;
+    }
+    .menu span:hover {
+      font-weight: bold;
+    }
+    .menu span {
+      cursor: pointer;
+    }
+  </style>
+  <meta charset="utf-8">
+
+</head>
+
+<body>
+
+<ul class="menu" id="menu">
+  <li>This PC
+    <ul>
+      <li>Local Disc(C:)
+        <ul>
+          <li>Program Files</li>
+          <li>Users</li>
+          <li>Windows</li>
+          <li>AppData</li>
+        </ul>
+      </li>
+      <li>Local Disc(D:)
+        <ul>
+          <li>Game</li>
+          <li>Program</li>
+          <li>New Folder 1</li>
+        </ul>
+      </li><li>Local Disc(E:)
+        <ul>
+          <li>Video</li>
+          <li>Music</li>
+          <li>New Folder 2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<script>
+  for (let li of menu.querySelectorAll('li')) {
+    let span = document.createElement('span');
+    li.prepend(span);
+    span.append(span.nextSibling);
+  }
+  menu.onclick = function(event) {
+    if (event.target.tagName != 'SPAN') {
+      return;
+    }
+    let childrenContainer = event.target.parentNode.querySelector('ul');
+    if (!childrenContainer) return;
+    childrenContainer.hidden = !childrenContainer.hidden;
+  }
+</script>
+
+</body>
+</html>

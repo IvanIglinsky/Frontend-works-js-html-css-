@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background:tomato;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<p></p>
+<script>
+  let input=document.querySelector('input');
+  let p=document.querySelector('p');
+  input.onkeypress=showP;
+  function showP(event)
+  {
+    p.innerHTML='Натиснута клавіша:'+ String.fromCharCode(event.keyCode);
+  }
+</script>
+</body>
+</html>
