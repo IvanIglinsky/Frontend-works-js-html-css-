@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/e4c5abe896.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #00AB6F;
+        }
+
+        hr {
+            margin: 15px;
+        }
+
+        .header {
+            background: #58E000;
+        }
+
+        .ButtonBack {
+
+            width: 100px;
+            float: right;
+            position: sticky;
+            background: darkgrey;
+            border: 2px solid grey;
+            font-weight: bold;
+            margin: 10px 15px;
+        }
+
+        .textAdmin {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <button class="ButtonBack" onclick="location.href='ProductList.html'">Back</button>
+    <h2 class="textAdmin">Admin Panel</h2>
+    <hr>
+</div>
+<table></table>
+<i class="fa-solid fa-circle-plus" style="margin-left: 150px;margin-top: 20px;scale: 200%" onclick="addNewTovar();"></i>
+<script>
+    let jsons = JSON.parse ( localStorage.getItem ( 'items' ) );
+    let table = document.createElement ( 'table' );
+    let trFirst = document.createElement ( 'tr' );
+    let tdFirst = trFirst.appendChild ( document.createElement ( 'td' ) );
+    let tdImg = trFirst.appendChild ( document.createElement ( 'td' ) );
+    let tdFSecond = trFirst.appendChild ( document.createElement ( 'td' ) );
+    let tdTridh = trFirst.appendChild ( document.createElement ( 'td' ) );
+    let tdEdit = trFirst.appendChild ( document.createElement ( 'td' ) );
+    let tdRemove = trFirst.appendChild ( document.createElement ( 'td' ) );
+    tdFirst.innerHTML = 'ID';
+    tdImg.innerHTML = 'IMG';
+    tdFSecond.innerHTML = 'Name';
+    tdTridh.innerHTML = 'Price';
+    tdEdit.innerHTML = 'Edit';
+    tdRemove.innerHTML = 'Remove';
+    table.appendChild ( trFirst )
+    for ( let i = 0 ; i < jsons.length ; i++ ) {
+        let tr = table.appendChild ( document.createElement ( 'tr' ) );
+        let tdID = tr.appendChild ( document.createElement ( 'td' ) );
+        tdID.className = 'element1';
+        tdID.innerHTML = '#' + jsons[i].ID;
+        let tdImg = tr.appendChild ( document.createElement ( 'td' ) );
+        let imges = document.createElement ( 'img' );
+        imges.className = 'elemimg';
+        tdImg.appendChild ( imges );
+        imges.src = jsons[i].img;
+
+        let tdName = tr.appendChild ( document.createElement ( 'td' ) );
+        tdName.className = 'element2';
+        tdName.innerHTML = jsons[i].name;
+        let tdPrice = tr.appendChild ( document.createElement ( 'td' ) );
+        tdPrice.className = 'element3';
+        tdPrice.innerHTML = jsons[i].Price + ' $';
+        let tdEditor = tr.appendChild ( document.createElement ( 'td' ) );
+        let pen = document.createElement ( 'i' );
+        tdEditor.className = 'Editor';
+        pen.className = 'fa-sharp fa-solid fa-pen';
+        pen.style.marginLeft = '5px';
+        tdEditor.appendChild ( pen );
+        let tdRemove = tr.appendChild ( document.createElement ( 'td' ) );
+        let xMark = document.createElement ( 'i' );
+        tdRemove.className = 'Remove';
+        xMark.className = 'fa-sharp fa-solid fa-xmark';
+        xMark.style.marginLeft = '20px';
+        tdRemove.appendChild ( xMark );
+    }
+    document.querySelector ( 'table' ).innerHTML = table.innerHTML;
+    let pen = document.getElementsByClassName ( 'Editor' );
+    let del = document.getElementsByClassName ( 'Remove' );
+    let tdElem1 = document.querySelectorAll ( 'td.element1' );
+    let tdElemImg = document.querySelectorAll ( 'td.elemimg' );
+    let tdElem2 = document.querySelectorAll ( 'td.element2' );
+    let tdElem3 = document.querySelectorAll ( 'td.element3' );
+    let elem = jsons
+    for ( let i = 0 ; i < pen.length ; i++ ) {
+        pen[i].onclick = function () {
+            tdElem1[i].innerHTML = prompt ( 'Введіть ID' );
+            tdElemImg[i].innerHTML = prompt ( 'Введіть Src Картинки' );
+            tdElem2[i].innerHTML = prompt ( 'Введіть Name' );
+            tdElem3[i].innerHTML = prompt ( 'Введіть Price' );
+            elem[i].ID = tdElem1[i].innerHTML;
+            elem[i].img = tdElemImg[i].innerHTML;
+            elem[i].name = tdElem2[i].innerHTML;
+            elem[i].Price = tdElem3[i].innerHTML;
+            let tovar = {
+                ID : elem[i].ID.split ( '#' )[1] ,
+                img : elem[i].img ,
+                name : elem[i].name ,
+                Price : elem[i].Price.split ( '$' )[0]
+            }
+            elem.push ( tovar )
+            localStorage.setItem ( 'items' , JSON.stringify ( elem ) )
+        };
+    }
+    for ( let i = 0 ; i < del.length ; i++ ) {
+        del[i].onclick = function () {
+            document.getElementsByClassName ( 'element1' )[i].remove ();
+            document.getElementsByClassName ( 'elemimg' )[i].remove ();
+            document.getElementsByClassName ( 'element2' )[i].remove ();
+            document.getElementsByClassName ( 'element3' )[i].remove ();
+            document.getElementsByClassName ( 'Editor' )[i].remove ();
+            document.getElementsByClassName ( 'Remove' )[i].remove ();
+            let tovar = {
+                ID : elem[i].ID ,
+                img : elem[i].img ,
+                name : elem[i].name ,
+                Price : elem[i].Price
+            }
+            elem.pop ( tovar )
+            localStorage.setItem ( 'items' , JSON.stringify ( elem ) );
+            location.reload ();
+        }
+    }
+
+    function addNewTovar () {
+        let trNew = document.createElement ( 'tr' )
+        let Elem1 = document.createElement ( 'td' );
+        Elem1.innerHTML = prompt ( 'Введіть ID' );
+        let Elem2 = document.createElement ( 'td' );
+        let IMGTD = document.createElement ( 'td' );
+        let imgss = document.createElement ( 'img' );
+        imgss.src = 'img/' + prompt ( 'Введіть src' );
+        IMGTD.appendChild ( imgss );
+        Elem2.innerHTML = prompt ( 'Введіть Name' );
+        let Elem3 = document.createElement ( 'td' );
+        Elem3.innerHTML = prompt ( 'Введіть Price' );
+        trNew.appendChild ( Elem1 );
+        trNew.appendChild ( IMGTD );
+        trNew.appendChild ( Elem2 );
+        trNew.appendChild ( Elem3 );
+        let pen = document.createElement ( 'i' );
+        pen.className = 'fa-sharp fa-solid fa-pen';
+        pen.style.marginLeft = '5px';
+        trNew.appendChild ( pen );
+        let xMark = document.createElement ( 'i' );
+        tdRemove.className = 'Remove';
+        xMark.className = 'fa-sharp fa-solid fa-xmark';
+        trNew.appendChild ( xMark );
+        document.querySelector ( 'table' ).appendChild ( trNew );
+        let tovar = {
+            ID : Elem1.innerHTML.split ( '#' )[1] ,
+            img : imgss.src ,
+            name : Elem2.innerHTML ,
+            Price : Elem3.innerHTML.split ( '$' )[0]
+        }
+        elem.push ( tovar );
+        localStorage.setItem ( 'items' , JSON.stringify ( elem ) );
+        location.reload ();
+    }
+
+    let td = document.querySelectorAll ( 'td' );
+    for ( let i = 0 ; i < td.length ; i++ ) {
+        td[i].style.border = '1px solid black';
+        td[i].style.padding = '2px 10px';
+    }
+</script>
+</body>
+</html>

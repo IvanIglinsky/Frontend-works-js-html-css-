@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        background: #00AB6F;
+    }
+    hr{
+        margin: 15px;
+    }
+    td{
+        border: 1px solid black;
+        width:100px;
+        height: 30px;
+        padding-left: 20px;
+    }
+    .ButtonBack {
+        width: 100px;
+        float: right;
+        position: sticky;
+        background: darkgrey;
+        border: 2px solid grey;
+        font-weight: bold;
+        margin:10px 15px;
+    }
+    .textBasket {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    .header{
+        background: #58E000;
+    }
+
+
+</style>
+<body>
+<div class="header">
+<button class="ButtonBack" onclick="location.href='ProductList.html'">Back</button>
+<h2 class="textBasket">Basket</h2>
+<hr>
+</div>
+<table>
+    <tr class="TrOfName">
+        <td>№</td>
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Price</td>
+    </tr>
+</table>
+<script>
+    let jsonBasket=JSON.parse(localStorage.getItem('basket'))
+    let table=document.querySelector('table');
+    for(let i=0;i<jsonBasket.length;i++){
+        let trNew=document.createElement('tr');
+        let tdID=trNew.appendChild(document.createElement('td'));
+        let tdName=trNew.appendChild(document.createElement('td'));
+        let tdInput=trNew.appendChild(document.createElement('td'));
+        let input=document.createElement('input');
+        input.type='number';
+        input.min='1';
+        input.defaultValue='1';
+        let text=document.createElement('strong');
+        text.innerHTML=' kg';
+        input.style.width='50px';
+        input.oninput=getSum;
+
+        tdInput.appendChild(input);
+        tdInput.appendChild(text)
+        let tdPrice=trNew.appendChild(document.createElement('td'));
+        tdID.innerHTML=jsonBasket[i].ID;
+        tdName.innerHTML=jsonBasket[i].name;
+        tdPrice.innerHTML=jsonBasket[i].Price;
+        table.appendChild(trNew);
+    }
+
+    let trOfTotal=document.createElement('tr');
+    let TdName=trOfTotal.appendChild(document.createElement('td'));
+    TdName.innerHTML='Total:';
+    TdName.style.fontWeight='bold';
+    TdName.colSpan=2;
+    let TdOfResult=trOfTotal.appendChild(document.createElement('td'));
+    function getSum() {
+        let sum=0;
+            for ( let i = 1 ; i < jsonBasket.length + 1 ; i++ ) {
+            sum += parseFloat ( table.children[i].children[2].children[0].value ) * parseFloat ( table.children[i].children[3].innerHTML.split ( "$" )[0] );
+        }
+
+        TdOfResult.innerHTML=sum.toFixed(2)+'$';
+    }
+    TdOfResult.colSpan=2;
+    TdOfResult.style.fontWeight='bold';
+    getSum();
+    table.appendChild(trOfTotal)
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #backGroundFon {
+            background: #00AB6F;
+        }
+
+        .TitleText {
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px 0;
+
+        }
+
+        .adminka {
+            float: right;
+            width: 100px;
+            height: 25px;
+            background: #a8a8a8;
+            border: 2px solid grey;
+            font-weight: bold;
+            margin: 10px 15px;
+        }
+
+        hr {
+            margin: 15px;
+        }
+
+        .SearchTexts {
+            display: flex;
+            justify-content: center;
+        }
+
+        #inputOfSort {
+            margin: 0 30px;
+            width: 200px;
+        }
+
+        #ButtonSort {
+            width: 200px;
+            background: darkgrey;
+            border: 2px solid grey;
+        }
+
+        #allCards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            width: 100vw;
+        }
+
+        .cards {
+            background: #FF5300;
+            width: max-content;
+            border: 2px solid darkgrey;
+            border-radius: 5%;
+            margin-right: 100px;
+            margin-bottom: 20px;
+        }
+
+        .cardsID {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cardsName {
+            font-weight: bold;
+            font-size: x-large;
+            text-transform: uppercase;
+            margin: 0 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cardsPrice {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .header {
+            background: #58E000;
+        }
+
+        .buttonAdd {
+            padding: 5px;
+            height: 25px;
+            background: #a8a8a8;
+            border: 2px solid grey;
+            font-weight: bold;
+            margin: 10px 15px;
+        }
+
+        .buttonRate {
+            padding: 5px;
+            height: 25px;
+            background: #a8a8a8;
+            border: 2px solid grey;
+            font-weight: bold;
+            margin: 10px 15px;
+        }
+
+        .imgFromCard {
+            margin-left: 25%;
+            width: 74px;
+            height: 74px;
+        }
+        .apply{
+            margin-top: 20px;
+            margin-left: 40px;
+            height: 45px;
+            background: #a8a8a8;
+            border: 2px solid grey;
+            font-weight: bold;
+
+        }
+        .rating {
+            margin-top: 50px;
+            width: 170px;
+            height: 30px;
+            display: flex;
+           flex-direction: row-reverse;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .rating:not(:checked) > input {
+            display: none;
+        }
+
+        .rating:not(:checked) > label {
+            width: 30px;
+            cursor: pointer;
+            font-size: 30px;
+            color: lightgrey;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .rating:not(:checked) > label:before {
+            content: '★';
+        }
+
+        .rating > input:checked ~ label {
+            color: gold;
+        }
+
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: gold;
+        }
+
+        .rating > input:checked + label:hover,
+        .rating > input:checked + label:hover ~ label,
+        .rating > input:checked ~ label:hover,
+        .rating > input:checked ~ label:hover ~ label,
+        .rating > label:hover ~ input:checked ~ label {
+            color: gold;
+        }
+    </style>
+</head>
+<body id="backGroundFon">
+<div class="header">
+    <button class="adminka" onclick="location.href='AdminPanel(Task3).html'">Admin panel</button>
+    <button class="adminka" onclick="location.href='Basket(Task4).html'">Basket</button>
+    <p class="TitleText">Product list</p>
+    <hr>
+    <p class="SearchTexts">Type of sort:
+        <select name="SelectSortProperty" id="inputOfSort">
+            <option value="PriceDown">Price Down</option>
+            <option value="PriceUp">Price Up</option>
+            <option value="Name">Name</option>
+            <option value="Id">ID</option>
+        </select>
+        <input id="ButtonSort" type="button" value="Sort" onclick="Sort();">
+    </p>
+    <hr>
+</div>
+<div id="allCards">
+</div>
+<script>
+    let strId = [];
+    let strName = [];
+    let priceStr = [];
+    let imgStr = []
+    let jsons = JSON.parse ( localStorage.getItem ( 'items' ) );
+    console.log(jsons)
+    if( jsons==null ) {
+        strId = [ '#1' , '#4' , '#3' , '#2' , '#5' , '#7' , '#6' , '#10' , '#8' , '#9' , '#11' , ];
+        strName = [ 'Apple' , 'Pear' , 'Banana' , 'Orange' , 'Lemon' , 'Lime' , 'Apricot' , 'Raspberry' , 'Mango' , 'Avocado' , 'Papaya' ];
+        priceStr = [ '1.02$' , '1.53$' , '2.00$' , '2.35$' , '3.45$' , '3.90$' , '4.10$' , '4.60$' , '5.60$' , '5.90$' , '7.00$' ];
+        imgStr = [ 'img/apple.jpg' , 'img/pear.jpg' , 'img/banan.jpg' , 'img/orange.jpg' , 'img/Lemon.jpg' , 'img/lime.jpg' , 'img/apricot.png' , 'img/rasperby.jpg' , 'img/mango.jpg' , 'img/avocado.jpg' , 'img/papaya.jpg' ]
+    } else {
+        for ( let i = 0 ; i < jsons.length ; i++ ) {
+            strId.push ( '#' + jsons[i].ID );
+            strName.push ( jsons[i].name );
+            priceStr.push ( jsons[i].Price + '$' );
+            imgStr.push ( jsons[i].img );
+        }
+    }
+    let count = strId.length;
+    let divMain = document.getElementById ( 'allCards' );
+    for ( let i = 0 ; i < strId.length ; i++ ) {
+        let div = document.createElement ( 'div' );
+        div.className = 'cards';
+        let pId = document.createElement ( 'p' );
+        pId.className = 'cardsID';
+        pId.innerHTML = strId[i];
+        div.appendChild ( pId );
+        let img = document.createElement ( 'img' );
+        img.className = 'imgFromCard';
+        img.src = imgStr[i];
+        div.appendChild ( img );
+        let pName = document.createElement ( 'p' );
+        pName.className = 'cardsName';
+        pName.innerHTML = strName[i];
+        div.appendChild ( pName );
+        let pPrice = document.createElement ( 'p' );
+        pPrice.className = 'cardsPrice';
+        pPrice.innerHTML = priceStr[i];
+        div.appendChild ( pPrice );
+        let buttonAdd = document.createElement ( 'button' )
+        buttonAdd.innerHTML = 'Buy';
+        buttonAdd.style.margin = '5px 25px';
+        buttonAdd.className = 'buttonAdd';
+        div.appendChild ( buttonAdd );
+        let buttonRate = document.createElement ( 'button' );
+        buttonRate.innerHTML = 'Rate';
+        buttonRate.className = 'buttonRate';
+        div.appendChild ( buttonRate );
+        divMain.appendChild ( div );
+
+
+    }
+
+    function NewItemSearch () {
+        let BaseArr = [];
+        for ( let i = 0 ; i < count ; i++ ) {
+            let tovar = {
+                ID : divMain.children[i].children[0].innerHTML.split ( '#' )[1] ,
+                img : divMain.children[i].children[1].src ,
+                name : divMain.children[i].children[2].innerHTML ,
+                Price : divMain.children[i].children[3].innerHTML.split ( '$' )[0]
+
+            }
+
+            BaseArr.push ( tovar );
+        }
+        localStorage.setItem ( 'items' , JSON.stringify ( BaseArr ) );
+    }
+
+    NewItemSearch ();
+
+    function Sort () {
+        let selected = document.getElementById ( 'inputOfSort' ).value;
+        if( selected == 'Id' ) {
+            for ( let i = 0 ; i < count ; i++ ) {
+                for ( let j = i ; j < count ; j++ ) {
+                    if( +divMain.children[i].children[0].innerHTML.split ( '#' )[1] > +divMain.children[j].children[0].innerHTML.split ( '#' )[1] ) {
+                        let replacedNode = divMain.replaceChild ( divMain.children[j] , divMain.children[i] );
+                        insertAfter ( replacedNode , divMain.children[i] );
+                    }
+
+                }
+            }
+        }
+        if( selected == 'PriceDown' ) {
+            for ( let i = 0 ; i < count ; i++ ) {
+                for ( let j = i ; j < count ; j++ ) {
+                    if( +divMain.children[i].children[3].innerHTML.split ( '$' )[0] < divMain.children[j].children[3].innerHTML.split ( '$' )[0] ) {
+                        let replacedNode = divMain.replaceChild ( divMain.children[j] , divMain.children[i] );
+                        insertAfter ( replacedNode , divMain.children[i] );
+                    }
+                }
+            }
+        }
+        if( selected == 'PriceUp' ) {
+            for ( let i = 0 ; i < count ; i++ ) {
+                for ( let j = i ; j < count ; j++ ) {
+                    if( +divMain.children[i].children[3].innerHTML.split ( '$' )[0] > divMain.children[j].children[3].innerHTML.split ( '$' )[0] ) {
+                        let replacedNode = divMain.replaceChild ( divMain.children[j] , divMain.children[i] );
+                        insertAfter ( replacedNode , divMain.children[i] );
+                    }
+                }
+            }
+        }
+        if( selected == 'Name' ) {
+            for ( let i = 0 ; i < count ; i++ ) {
+                for ( let j = i ; j < count ; j++ ) {
+                    if( divMain.children[i].children[2].innerHTML > divMain.children[j].children[2].innerHTML ) {
+                        let replacedNode = divMain.replaceChild ( divMain.children[j] , divMain.children[i] );
+                        insertAfter ( replacedNode , divMain.children[i] );
+                    }
+                }
+            }
+        }
+        NewItemSearch ();
+    }
+
+
+    let basket = [];
+    let BaseMark=[];
+    let Goods = document.querySelectorAll ( 'div.cards' );
+    let button = document.querySelectorAll ( 'button.buttonAdd' );
+    let buttonRate = document.querySelectorAll ( 'button.buttonRate' );
+    for ( let i = 0 ; i < button.length ; i++ ) {
+        button[i].onclick = function Added () {
+            let tovar = {
+                ID : Goods[i].children[0].innerHTML ,
+                img : Goods[i].children[1].src ,
+                name : Goods[i].children[2].innerHTML ,
+                Price : Goods[i].children[3].innerHTML
+            }
+            console.log ( button[i].innerHTML )
+            if( button[i].innerHTML == 'Buy' ) {
+                basket.push ( tovar );
+                button[i].innerHTML = 'Added';
+            } else {
+                basket.pop ( tovar );
+                button[i].innerHTML = 'Buy';
+            }
+            localStorage.setItem ( 'basket' , JSON.stringify ( basket ) );
+        };
+
+        buttonRate[i].onclick = function () {
+            let star = `<div class="rating">
+                      <input class="inputStar" type="radio" id="star-1" name="rating" value="5">
+                      <label for="star-1" title="Оцінка «1»"></label>
+
+                      <input class="inputStar" type="radio" id="star-2" name="rating" value="4">
+                      <label for="star-2" title="Оцінка «2»"></label>
+
+                      <input class="inputStar" type="radio" id="star-3" name="rating" value="3">
+                      <label for="star-3" title="Оцінка «3»"></label>
+
+                      <input class="inputStar" type="radio" id="star-4" name="rating" value="2">
+                      <label for="star-4" title="Оцінка «4»"></label>
+
+                      <input class="inputStar" type="radio" id="star-5" name="rating" value="1">
+                      <label for="star-5" title="Оцінка «5»"></label>
+                    </div>
+                      <button class="apply">Send mark</button>`;
+            let tmp = Goods[i].innerHTML;
+            Goods[i].innerHTML = star;
+            let inputs=document.getElementsByClassName('inputStar');
+
+            for(let j=0;j<inputs.length;j++) {
+                let tovarMark;
+                inputs[j].onclick = function () {
+                    tovarMark = {
+                        name : jsons[i].name ,
+                        mark : inputs[j].value
+                    }
+                    BaseMark.push ( tovarMark );
+                    localStorage.setItem ( 'mark' , JSON.stringify ( BaseMark ) );
+                }
+
+
+            }
+
+            let buttonApply = document.querySelector ( 'button.apply' );
+            buttonApply.onclick = function () {
+                Goods[i].innerHTML = tmp;
+                location.reload ();
+            }
+
+        }
+
+
+    }
+
+    function insertAfter ( newNode , existingNode ) {
+        existingNode.parentNode.insertBefore ( newNode , existingNode.nextSibling );
+    }
+</script>
+</body>
+</html>
